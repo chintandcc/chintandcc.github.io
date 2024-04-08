@@ -690,6 +690,10 @@ mark, .mark {
     padding: 120px 0 50px;
     z-index: 99;
     min-height: 100vh;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
 }
 
 .hero__wrapper .countdown__module {
