@@ -715,7 +715,8 @@ mark, .mark {
         -ms-flex-direction: column;
             flex-direction: column;
         -ms-flex-pack: justify;
-        justify-content: space-between;
+        align-items: center;
+        text-align: center;
     }
 
     .hero__icon {
