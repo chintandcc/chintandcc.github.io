@@ -724,13 +724,13 @@ mark,
 
 .hero__title {
     font-size: 30px;
-    font-weight: 300;
+    font-weight: 600;
     color: #fff;
 }
 
 @media (min-width: 320px) {
     .hero__title {
-        font-size: calc(2.04545vw + 23.45455px);
+        font-size: calc(6.04545vw + 23.45455px);
     }
 }
 
