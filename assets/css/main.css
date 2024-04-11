@@ -2093,3 +2093,6 @@ mark,
         font-size: 90px;
     }
 }
+.loader-wrap .loader-wrap-heading .load-text{
+    color: #fff;
+}
