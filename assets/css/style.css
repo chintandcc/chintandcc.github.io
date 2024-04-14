@@ -905,6 +905,7 @@ canvas {
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 70px;
 }
 
 /*-----------------------[ 8.Fix Image CSS ]------------------------*/
