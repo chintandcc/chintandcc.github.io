@@ -20,6 +20,7 @@
         height: 100%;
         width: 390px;
     }
+
     .imgBox {
         height: 100%;
         width: 390px;
@@ -92,6 +93,28 @@
         display: none;
     }
 
+    .sidebar.close.mob-visible {
+        display: block;
+        top: auto;
+        bottom: 5px;
+        left: 50%;
+        transform: translate(-50%, 0%);
+        width: -webkit-fill-available;
+    }
+
+    .sidebar.close.mob-visible .nav-links {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        width: auto;
+        padding: 0px 25px;
+    }
+
+    li.icetab {
+        width: 100%;
+        max-width: 78px;
+    }
+
     .social_media {
         display: none;
     }
@@ -104,12 +127,27 @@
         margin: 0 auto;
     }
 
+    .sidebar.close .nav-links li .sub-menu {
+        top: 0px;
+        left: 50%;
+        transform: translate(-50%, 0px);
+    }
+
+    .sidebar.close .nav-links li:hover .sub-menu {
+        top: -43px;
+        left: 50%;
+        transform: translate(-50%, 0px);
+    }
+    .sidebar .nav-links li a{
+        padding: 12px 0;
+    }
+
 }
 
-@media(max-width:1024px){
+@media(max-width:1024px) {
 
-    .tabcontent{
-        transform:translateY(0%);
+    .tabcontent {
+        transform: translateY(0%);
         position: relative;
     }
 }
@@ -125,7 +163,7 @@
     }
 
     section#card_main {
-        padding: 80px 12px 40px 12px;
+        padding: 80px 12px 65px 12px;
     }
 
     .olivia-img {
@@ -561,7 +599,7 @@
     }
 
     section#card_main {
-        padding: 80px 12px 20px 12px;
+        padding: 80px 12px 65px 12px;
     }
 
     .down_arrow {
@@ -743,6 +781,7 @@
         height: 100%;
         width: 300px;
     }
+
     .imgBox {
         height: 100%;
         width: 300px;

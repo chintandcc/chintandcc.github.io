@@ -319,3 +319,19 @@ window.addEventListener("load", () => {
 $(function () {
     $('.circlechart').circlechart();
 });
+
+// Custom JS
+document.querySelectorAll('.sidebar.close.mob-visible ul li').forEach(function(item) {
+    item.addEventListener('click', function() {
+        // Add class to the clicked li element
+        this.classList.add('current-tab');
+        
+        // Remove class from all other li elements
+        var siblings = this.parentNode.children;
+        for (var i = 0; i < siblings.length; i++) {
+            if (siblings[i] !== this) {
+                siblings[i].classList.remove('current-tab');
+            }
+        }
+    });
+});

@@ -14,6 +14,15 @@
     <link rel="stylesheet" href="/assets/css/slick.css">
     <link rel="stylesheet" href="/assets/css/style.css">
     <link rel="stylesheet" href="/assets/css/media_query.css">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-NBRYMVHJK8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-NBRYMVHJK8');
+</script>
 </head>
 
 <body class="dark-mode">
@@ -50,6 +59,7 @@
     <!-- ====================================== Dark Light Mode End===================================== -->
     <header>
         <!-- ====================================== Fix Icon Menu ===================================== -->
+
         <div class="sidebar close">
             <ul class="nav-links icetab-container" id="icetab-container">
                 <li class="icetab current-tab">
@@ -74,6 +84,14 @@
                     </a>
                     <ul class="sub-menu">
                         <li><a class="link_name" href="javascript:void(0)">Resume</a></li>
+                    </ul>
+                </li>
+                <li class="icetab">
+                    <a class="" href="javascript:void(0)">
+                        <img class="nav_menu_icon" src="/assets/images/contact_icon.svg" alt="contact_icon">
+                    </a>
+                    <ul class="sub-menu blank">
+                        <li><a class="link_name" href="javascript:void(0)">Contact</a></li>
                     </ul>
                 </li>
                 <!-- <li class="icetab">
@@ -116,14 +134,83 @@
                         <li><a class="link_name" href="javascript:void(0)">Blogs</a></li>
                     </ul>
                 </li> -->
+                
+            </ul>
+        </div>
+        <div class="sidebar close mob-visible">
+            <ul class="nav-links icetab-container" id="icetab-container">
+                <li class="icetab current-tab">
+                    <a class="nav_menu_icon_line" href="#page">
+                        <img class="nav_menu_icon" src="/assets/images/home_icon.svg" alt="home_icon">
+                    </a>
+                    <ul class="sub-menu blank">
+                        <li class=""><a class="link_name" href="#page">Home</a></li>
+                    </ul>
+                </li>
+                <li class="icetab menu-btn">
+                    <a class="nav_menu_icon_line" href="#about">
+                        <img class="nav_menu_icon" src="/assets/images/about_icon.svg" alt="about_icon">
+                    </a>
+                    <ul class="sub-menu">
+                        <li><a class="link_name" href="#about">About Me</a></li>
+                    </ul>
+                </li>
                 <li class="icetab">
-                    <a class="" href="javascript:void(0)">
+                    <a class="nav_menu_icon_line" href="#resume">
+                        <img class="nav_menu_icon" src="/assets/images/resume_icon.svg" alt="resume_icon">
+                    </a>
+                    <ul class="sub-menu">
+                        <li><a class="link_name" href="#resume">Resume</a></li>
+                    </ul>
+                </li>
+                <li class="icetab">
+                    <a class="nav_menu_icon_line" href="#contact">
                         <img class="nav_menu_icon" src="/assets/images/contact_icon.svg" alt="contact_icon">
                     </a>
                     <ul class="sub-menu blank">
-                        <li><a class="link_name" href="javascript:void(0)">Contact</a></li>
+                        <li><a class="link_name" href="#contact">Contact</a></li>
                     </ul>
                 </li>
+                <!-- <li class="icetab">
+                    <a class="nav_menu_icon_line" href="javascript:void(0)">
+                        <img class="nav_menu_icon" src="/assets/images/services_icon.svg" alt="services_icon">
+                    </a>
+                    <ul class="sub-menu">
+                        <li><a class="link_name" href="javascript:void(0)">Services</a></li>
+                    </ul>
+                </li>
+                <li class="icetab">
+                    <a class="nav_menu_icon_line" href="javascript:void(0)">
+                        <img class="nav_menu_icon" src="/assets/images/skills_icon.svg" alt="skills_icon">
+                    </a>
+                    <ul class="sub-menu blank">
+                        <li><a class="link_name" href="javascript:void(0)">Skills</a></li>
+                    </ul>
+                </li>
+                <li class="icetab">
+                    <a class="nav_menu_icon_line" href="javascript:void(0)">
+                        <img class="nav_menu_icon" src="/assets/images/portfolio_icon.svg" alt="portfolio_icon">
+                    </a>
+                    <ul class="sub-menu blank">
+                        <li><a class="link_name" href="javascript:void(0)">Portfolio</a></li>
+                    </ul>
+                </li> -->
+                <!-- <li class="icetab">
+                    <a class="nav_menu_icon_line" href="javascript:void(0)">
+                        <img class="nav_menu_icon" src="/assets/images/testimonial_icon.svg" alt="testimonial_icon">
+                    </a>
+                    <ul class="sub-menu blank">
+                        <li><a class="link_name" href="javascript:void(0)">Testimonials</a></li>
+                    </ul>
+                </li> -->
+                <!-- <li class="icetab">
+                    <a class="nav_menu_icon_line" href="javascript:void(0)">
+                        <img class="nav_menu_icon" src="/assets/images/blog_icon.svg" alt="blog_icon">
+                    </a>
+                    <ul class="sub-menu blank">
+                        <li><a class="link_name" href="javascript:void(0)">Blogs</a></li>
+                    </ul>
+                </li> -->   
             </ul>
         </div>
         <!-- ====================================== Fix Icon Menu End ===================================== -->
@@ -323,8 +410,8 @@
                         <div class="small_yellow_border_main fade_up">
                             <div class="envato_group_main">
                                 <div>
-                                    <h3 class="bachelor font_w_font_s1">Jr. Web Developer</h3>
-                                    <h4 class="company font_w_font_s1">Ambiw Web Agency / 2020 - 2024</h4>
+                                    <h3 class="bachelor font_w_font_s1">Web Developer</h3>
+                                    <h4 class="company font_w_font_s1"><a href="https://www.ambiw.com/" target="_blank">Ambiw Web Agency</a> / 2020 - 2024</h4>
                                 </div>
                                 <!-- <img class="company_logo" src="/assets/images/envato.png" alt="envato"> -->
                             </div>
@@ -342,8 +429,8 @@
                         <div class="small_yellow_border_main fade_up">
                             <div class="envato_group_main">
                                 <div>
-                                    <h3 class="bachelor font_w_font_s1">Jr. Web Developer</h3>
-                                    <h4 class="company font_w_font_s1">Encircle Technology / 2024 - praesent</h4>
+                                    <h3 class="bachelor font_w_font_s1">Web Developer</h3>
+                                    <h4 class="company font_w_font_s1"><a href="https://encircletechnologies.com/" target="_blank">Encircle Technology</a> / 2024 - praesent</h4>
                                 </div>
                                 <!-- <img class="company_logo" src="/assets/images/apple.png" alt="apple"> -->
                             </div>
@@ -973,11 +1060,11 @@
                         <h3 class="moswa touch">Get in touch!</h3>
                         <div class="contact_number_main">
                             <img src="/assets/images/contact.svg" alt="contact">
-                            <h4 class="contact_number"><a href="tel:+12345678899">+91 90812 54813</a></h4>
+                            <h4 class="contact_number"><a href="tel:+919081254813">+91 90812 54813</a></h4>
                         </div>
                         <div class="contact_number_main">
                             <img src="/assets/images/gmail.svg" alt="gmail">
-                            <h4 class="contact_number"><a href="mailto:hello@olivia.com">chintandevs13@gmail.com</a></h4>
+                            <h4 class="contact_number"><a href="chintandevs13@gmail.com">chintandevs13@gmail.com</a></h4>
                         </div>
                         <!-- <div class="contact_number_main">
                             <img src="/assets/images/map.svg" alt="map">
@@ -990,7 +1077,7 @@
                         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d11661.278162829134!2d-76.16113884753138!3d43.0557465765357!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89d9f3add89232d3%3A0x516c4febad79a023!2sNear%20Northeast%2C%20Syracuse%2C%20NY%2013203%2C%20USA!5e0!3m2!1sen!2sin!4v1704092010021!5m2!1sen!2sin"
                         style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
                     </iframe> -->
-                    <h5 class="copyright">© Chintan DOdiya 2024. All rights reserved by
+                    <h5 class="copyright">© Chintan Dodiya 2024. All rights reserved by
                     </h5>
                 </section>
                 <!-- ======================================= Contact us Section End ================================== -->
