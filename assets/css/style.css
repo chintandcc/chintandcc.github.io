@@ -2660,6 +2660,10 @@ ul {
     color: #06D85F;
 }
 
+.sidebar.close.mob-visible {
+    display: none;
+}
+
 @media screen and (max-width: 850px) {
     .popup_gallery {
         max-width: 90%;
