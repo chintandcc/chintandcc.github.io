@@ -1,86 +1,46 @@
+// Set up Three.js scene
+var scene = new THREE.Scene();
+var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+camera.position.z = 500;
 
-var renderer, scene, camera, composer, planet, skelet;
+var renderer = new THREE.WebGLRenderer({ antialias: true });
+renderer.setSize(window.innerWidth, window.innerHeight);
+document.body.appendChild(renderer.domElement);
 
-window.onload = function () {
-    init();
-    animate();
+// Create the Earth
+var earthGeometry = new THREE.SphereGeometry(200, 32, 32);
+var earthTexture = new THREE.TextureLoader().load('./earth_texture.jpg');
+var earthMaterial = new THREE.MeshBasicMaterial({ map: earthTexture });
+var earth = new THREE.Mesh(earthGeometry, earthMaterial);
+scene.add(earth);
+
+// Create the hexagonal grid
+var hexRadius = 250;
+var hexMaterial = new THREE.LineBasicMaterial({ color: 0xffffff });
+for (var i = 0; i < 6; i++) {
+    var angle1 = i * (Math.PI / 3);
+    var angle2 = (i + 1) * (Math.PI / 3);
+    var x1 = hexRadius * Math.cos(angle1);
+    var y1 = hexRadius * Math.sin(angle1);
+    var x2 = hexRadius * Math.cos(angle2);
+    var y2 = hexRadius * Math.sin(angle2);
+    var lineGeometry = new THREE.Geometry();
+    lineGeometry.vertices.push(
+        new THREE.Vector3(x1, y1, 0),
+        new THREE.Vector3(x2, y2, 0)
+    );
+    var line = new THREE.Line(lineGeometry, hexMaterial);
+    scene.add(line);
 }
 
-function init() {
-    renderer = new THREE.WebGLRenderer({
-        antialias: true,
-        alpha: true
-    });
-    renderer.setPixelRatio((window.devicePixelRatio) ? window.devicePixelRatio : 1);
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    renderer.autoClear = false;
-    renderer.setClearColor(0x000000, 0.0);
-    document.getElementById('canvas').appendChild(renderer.domElement);
-
-    scene = new THREE.Scene();
-    scene.fog = new THREE.Fog(0xA6CDFB, 1, 1000);
-
-    camera = new THREE.PerspectiveCamera(25, window.innerWidth / window.innerHeight, 1, 1000);
-    camera.position.z = 400;
-    camera.position.x = 0;
-    camera.position.y = 100;
-    scene.add(camera);
-
-    planet = new THREE.Object3D();
-    skelet = new THREE.Object3D();
-    scene.add(planet);
-    scene.add(skelet);
-
-    planet.position.y = -180;
-    skelet.position.y = -180;
-
-    var geom = new THREE.IcosahedronGeometry(15, 2);
-    var mat = new THREE.MeshPhongMaterial({
-        color: 0xBD9779,
-        shading: THREE.FlatShading
-    });
-    var bones = new THREE.MeshPhongMaterial({
-        color: 0xBD9779,
-        wireframe: true,
-        side: THREE.DoubleSide
-    });
-
-    var mesh = new THREE.Mesh(geom, mat);
-    mesh.scale.x = mesh.scale.y = mesh.scale.z = 18;
-    planet.add(mesh);
-
-    var mesh = new THREE.Mesh(geom, bones);
-    mesh.scale.x = mesh.scale.y = mesh.scale.z = 20;
-    skelet.add(mesh);
-
-    var ambientLight = new THREE.AmbientLight(0xBD9779);
-    scene.add(ambientLight);
-
-    var directionalLight = new THREE.DirectionalLight(0xffffff);
-    directionalLight.position.set(1, 1, 1).normalize();
-    scene.add(directionalLight);
-
-    window.addEventListener('resize', onWindowResize, false);
-
-};
-
-function onWindowResize() {
-    camera.aspect = window.innerWidth / window.innerHeight;
-    camera.updateProjectionMatrix();
-    renderer.setSize(window.innerWidth, window.innerHeight);
-}
-
+// Animation loop
 function animate() {
     requestAnimationFrame(animate);
 
-    planet.rotation.z += .001;
-    planet.rotation.y = 0;
-    planet.rotation.x = 0;
-    skelet.rotation.z -= .001;
-    skelet.rotation.y = 0;
-    skelet.rotation.x = 0;
-    renderer.clear();
+    // Rotate the Earth
+    earth.rotation.y += 0.005;
 
     renderer.render(scene, camera);
-};
+}
 
+animate();
