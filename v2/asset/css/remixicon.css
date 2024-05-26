@@ -10,12 +10,12 @@
 */
 @font-face {
   font-family: "remixicon";
-  src: url('remixicon.eot?t=1701175860820'); /* IE9*/
-  src: url('remixicon.eot?t=1701175860820#iefix') format('embedded-opentype'), /* IE6-IE8 */
-  url("remixicon.woff2?t=1701175860820") format("woff2"),
-  url("remixicon.woff?t=1701175860820") format("woff"),
-  url('remixicon.ttf?t=1701175860820') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
-  url('remixicon.svg?t=1701175860820#remixicon') format('svg'); /* iOS 4.1- */
+  src: url('/asset/webfonts/remixicon.eot?t=1701175860820'); /* IE9*/
+  src: url('/asset/webfonts/remixicon.eot?t=1701175860820#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url("/asset/webfonts/remixicon.woff2?t=1701175860820") format("woff2"),
+  url("/asset/webfonts/remixicon.woff?t=1701175860820") format("woff"),
+  url('/asset/webfonts/remixicon.ttf?t=1701175860820') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+  url('/asset/webfonts/remixicon.svg?t=1701175860820#remixicon') format('svg'); /* iOS 4.1- */
   font-display: swap;
 }
 
