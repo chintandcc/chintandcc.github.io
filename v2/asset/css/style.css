@@ -1,5 +1,5 @@
 /*------------------------------------------------------------------
-  Project: Olivia
+  Project: chintan
   Author: Upsqode
   Last change: 01/01/2024 
   Primary use: 
@@ -647,8 +647,8 @@ svg text {
 }
 
 /*-----------------------[ 4.Section Fix Image CSS ]------------------------*/
-.olivia-home-image {
-    background-image: url(/asset/image/Chintan_Dodiya.jpg);
+.chintan-home-image {
+    background-image: url(/asset/image/Chintan_Dodiya.JPG);
     background-position: center;
     width: inherit;
     height: 100vh;
@@ -663,11 +663,11 @@ svg text {
     object-fit: cover;
 }
 
-#olivia-home-image-grayscale {
+#chintan-home-image-grayscale {
     filter: grayscale(100%);
 }
 
-#olivia-home-image-grayscale:hover {
+#chintan-home-image-grayscale:hover {
     filter: grayscale(0);
 }
 
@@ -679,7 +679,7 @@ svg text {
     display: none;
 }
 
-.olivia-home-image2 {
+.chintan-home-image2 {
     width: inherit;
     height: 100vh;
     background-size: cover;
@@ -1115,7 +1115,7 @@ button:hover {
 }
 
 /*-----------------------[ 9.Footer Contain CSS ]------------------------*/
-.olivia-footer-wrap {
+.chintan-footer-wrap {
     padding: 20px 30px;
     background: var(--primary-color);
     width: -webkit-fill-available;
@@ -1125,7 +1125,7 @@ button:hover {
     width: -moz-available;
 }
 
-.olivia-copyright-content {
+.chintan-copyright-content {
     color: var(--card-sub-text);
     font-family: Kodchasan;
     font-size: 16px;
