@@ -57,7 +57,7 @@
         height: 100%;
     }
 
-    .moswa {
+    .dodiya {
         font-size: 55px;
         line-height: 75px;
         padding: 10px 0;
@@ -91,7 +91,7 @@
 }
 
 @media(max-width:1199px) {
-    .moswa {
+    .dodiya {
         font-size: 45px;
         line-height: 60px;
         padding: 10px 0;
@@ -130,6 +130,7 @@
         position: absolute;
         top: 20px;
         left: 20px;
+        max-width: 85px;
     }
 
     .navbar .logo a img {
@@ -163,8 +164,8 @@
         display: none;
     }
 
-    .olivia-home-image,
-    .olivia-home-image2 {
+    .chintan-home-image,
+    .chintan-home-image2 {
         position: relative;
         top: 0;
         left: 0;
@@ -175,7 +176,7 @@
     }
 
 
-    .olivia-left-fixed-image {
+    .chintan-left-fixed-image {
         width: 100%;
     }
 
@@ -214,7 +215,7 @@
         padding: 70px 0 20px 0;
     }
 
-    .olivia-footer-wrap {
+    .chintan-footer-wrap {
         position: relative;
     }
 }
@@ -284,8 +285,8 @@
 
 @media(max-width:767px) {
 
-    .olivia-home-image,
-    .olivia-home-image2 {
+    .chintan-home-image,
+    .chintan-home-image2 {
         height: 500px !important;
     }
 
@@ -312,7 +313,7 @@
         justify-content: center;
     }
 
-    .moswa {
+    .dodiya {
         font-size: 42px;
         padding: 15px 0;
         margin: 0;
@@ -415,7 +416,7 @@
         justify-content: center;
     }
 
-    .olivia-footer-wrap {
+    .chintan-footer-wrap {
         padding: 15px 12px;
     }
 
@@ -541,7 +542,7 @@
 }
 
 @media(max-width:600px) {
-    .moswa {
+    .dodiya {
         font-size: 38px;
         padding: 10px 0;
         margin: 0;
@@ -625,7 +626,7 @@
         max-width: 100%;
     }
 
-    .moswa {
+    .dodiya {
         font-size: 32px;
         padding: 10px 0;
         margin: 0;
@@ -785,8 +786,8 @@
 }
 
 @media(max-width:435px) {
-    .moswa {
-        font-size: 28px;
+    .dodiya {
+        font-size: 35px;
         padding: 10px 0;
         margin: 0;
         line-height: 40px;

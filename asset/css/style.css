@@ -966,7 +966,7 @@ header {
     display: flex;
     align-items: center;
     width: 4%;
-    padding-top: 0px;
+    padding-top: 20px;
 }
 
 .loader-pag {
@@ -1023,7 +1023,7 @@ header {
     margin: 0;
 }
 
-.moswa {
+.dodiya {
     color: var(--card-text);
     font-size: 60px;
     font-style: normal;
