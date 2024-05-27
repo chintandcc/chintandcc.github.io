@@ -648,7 +648,7 @@ svg text {
 
 /*-----------------------[ 4.Section Fix Image CSS ]------------------------*/
 .chintan-home-image {
-    background-image: url(./asset/image/Chintan_Dodiya.JPG);
+    background-image: url(/asset/image/Chintan_Dodiya.JPG);
     background-position: center;
     width: inherit;
     height: 100vh;
