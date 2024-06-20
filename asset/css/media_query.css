@@ -671,6 +671,7 @@
 
     .education_space {
         margin-bottom: 15px;
+        justify-content: center;
     }
 
     .envato_group_main {
