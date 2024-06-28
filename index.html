@@ -316,7 +316,7 @@ to<!DOCTYPE html>
                         </h3>
                         <div class="button_circle_group">
                             <div data-aos="fade-up" class="aos-init aos-animate">
-                                <button class="download_cv"
+                                <button id="promoButton" class="download_cv"
                                     onclick="window.open('/asset/pdf/Chintan Dodiya Resume.pdf');" target="_blank">
                                     <i class="ri-download-cloud-2-line"></i>
                                     Download CV
@@ -585,6 +585,16 @@ to<!DOCTYPE html>
             </div>
         </div>
     </div>
+    <script>
+document.addEventListener('DOMContentLoaded', function() {
+    var promoButton = document.getElementById('promoButton');
+    if (promoButton) {
+        promoButton.addEventListener('click', function() {
+            rdt('track', 'Custom', {customEventName: 'PromotionButtonClick'});
+        });
+    }
+});
+    </script>
     <script src="./asset/js/jquery.min.js"></script>
     <script src="./asset/js/aos.js"></script>
     <script src="./asset/js/cursor.js"></script>
