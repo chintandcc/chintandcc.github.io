@@ -618,6 +618,30 @@
         });
     </script>
 <script>
+    // Add focus on current window
+window.focus();
+
+// When click on iframe the focus change and we are listen this
+var listener = window.addEventListener('blur', function() {
+	
+	//console.log('active == iFrame: ', document.activeElement == document.querySelector('iframe[title="Help Scout Beacon"]'));
+	
+	// if the current focus is on your iFrame (you can use any css or js selector here)
+	if (document.activeElement == document.querySelector('iframe')) {
+		
+		//console.log('clicked');
+		
+		// Add to dataLayer your information
+		window.dataLayer = window.dataLayer || [];        
+		window.dataLayer.push({
+		  'chatBtn': true,
+		  'event': 'chatBtn'
+		});
+	 }
+	
+	// Remove listener
+ 	window.removeEventListener('blur', listener);
+});
     jQuery(document).ready(function() {
         jQuery('.eform-button-container-inner').attr('data-event-name', 'yourEventName');
         jQuery('.calendly-inline-widget').attr('data-event-name', 'yourEventName');
