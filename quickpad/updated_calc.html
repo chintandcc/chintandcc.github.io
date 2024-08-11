@@ -29,9 +29,13 @@
 
         .result-container {
             background-color: white;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 0;
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height 0.7s ease 0.1s, width 0.8s ease 0.2s, opacity 0.9s ease 0.3s;
         }
 
         .calc-wrapper {
@@ -74,38 +78,48 @@
             display: flex;
             justify-content: space-between;
             margin-bottom: 15px;
+            grid-gap: 10px;
         }
 
         .currency-amount-container select,
         .currency-amount-container input[type="number"] {
             display: inline-block;
             width: 100%;
-            padding: 10px;
+            padding: 14px;
             margin-top: 5px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
+            border: 1px solid #01172B1A;
+            border-radius: 10px;
             box-sizing: border-box;
+            font-family: Montserrat;
+            font-size: 14px;
+            font-weight: 500;
+            line-height: 21px;
+            text-align: left;
         }
+
+        .currency-amount-container select {
+    padding: 14px 7px;
+}
 
         #discount {
             display: inline-block;
             width: 100%;
-            padding: 10px;
+            padding: 14px;
             margin-top: 5px;
             margin-bottom: 15px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
+            border: 1px solid #01172B1A;
+            border-radius: 10px;
             box-sizing: border-box;
-        }
-
-        .currency-amount-container select {
-            padding: 7px;
-            /* width: 14%; */
+            font-family: Montserrat;
+            font-size: 14px;
+            font-weight: 500;
+            line-height: 21px;
+            text-align: left;
         }
 
         .note {
             text-align: center;
-            padding-top: 21px;
+            padding: 21px 21px 32px;
             color: #553c3c;
             font-size: 15px;
             border-top: 1px solid #01172B1A;
@@ -130,13 +144,16 @@
 
         input[type="submit"] {
             width: 100%;
-            padding: 10px;
-            background-color: #28a745;
+            padding: 11px;
+            background-color: #FF8163;
             color: white;
             border: none;
             border-radius: 100px;
             cursor: pointer;
+            font-family: Montserrat;
             font-size: 16px;
+            font-weight: 500;
+            line-height: 24px;
         }
 
         input[type="submit"]:hover {
@@ -145,11 +162,23 @@
 
         .result {
             margin-top: 20px;
-            padding: 10px;
-            background-color: #f8f9fa;
-            border: 1px solid #01172B1A;
-            border-radius: 10px;
+    padding: 10px;
+    background-color: #f8f9fa;
+    border: 1px solid #01172B1A;
+    border-radius: 10px;
+    max-height: 0;
+    overflow: hidden;
+    width: auto;
+    opacity: 0;
+    transition: max-height 0.7s ease 0.1s, width 0.8s ease 0.2s, opacity 0.9s ease 0.3s;
         }
+
+        .result.avtive {
+    transition: width 0.7s ease 0.1s, max-height 0.8s ease 0.2s, opacity 0.9s ease 0.3s;
+    width: auto;
+    max-height: 300px;
+    opacity: 1;
+}
 
         .price-col {
             display: flex;
@@ -248,17 +277,24 @@
         }
 
         .cr {
-            width: 14%;
+            width: 110px;
         }
 
         .am {
-            width: 86%;
+            width: 100%;
         }
 
         .tab-title-wrapper.active {
             font-weight: bold;
             color: #000;
-            /* Customize as needed */
+            background-color: #7ED3D41A;
+            border-bottom: 4px solid #7ED3D4;
+        }
+        .result-container.avtive {
+            width: 100%;
+            max-height: 700px;
+            opacity: 1;
+            transition: width 0.7s ease 0.1s, max-height 0.8s ease 0.2s, opacity 0.9s ease 0.3s;
         }
         @media(max-width:767px){
             .calc-wrapper{
@@ -266,13 +302,14 @@
             }
             .container {
                 width: auto;
+                max-width: initial;
             }
             .tab-title-wrapper h3 {
                 font-size: 18px;
             }
             .tab-title-wrapper {
-    padding: 20px 10px 20px 20px;
-}
+                padding: 20px 10px 20px 20px;
+            }
         }
     </style>
 </head>
@@ -280,7 +317,6 @@
 <body>
     <div class="calc-wrapper">
         <div class="container">
-            <h2>Discount and Interest Calculator</h2>
             <form id="calculatorForm">
                 <label for="currency-amount">Invoice Amount:</label>
                 <div class="currency-amount-container">
@@ -317,14 +353,11 @@
                         <div id="discountedPrice" class="value-price">0.000,00 €</div>
                     </div>
                 </div>
-                <p id="originalAmount"></p>
-                <p id="discountAmount"></p>
-                <p id="discountedPrice"></p>
             </div>
         </div>
         <div class="result-container">
             <div class="tab-title-container">
-                <div class="tab-title-wrapper" data-tab="60days">
+                <div class="tab-title-wrapper active" data-tab="60days">
                     <span>60 Days</span>
                     <h3 id="price60days">00,00 €</h3>
                 </div>
@@ -443,7 +476,8 @@
 
         document.getElementById('calculatorForm').addEventListener('submit', function (event) {
             event.preventDefault();
-
+            $('.result-container').addClass('avtive');
+            $('#result').addClass('avtive');
             let amount = parseFloat(document.getElementById('amount').value);
             let discountRate = parseFloat(document.getElementById('discount').value).toFixed(2);
             let currency = document.getElementById('currency').value;
@@ -561,40 +595,6 @@
             document.getElementById('installment-1').textContent = formatNumber(installment1a, currency);
             document.getElementById('installment-2').textContent = formatNumber(installment2a, currency);
             document.getElementById('installment-3').textContent = formatNumber(installment3a, currency);
-
-            // Function to show details
-            function showDetails(days, final, discountedPrice, fullAmount, interestRate, discountAmount,
-                installment1a, installment2a, installment3a) {
-                document.getElementById('details').innerHTML = `
-                    <strong>Interest for ${days} days:</strong>
-                    <br>Financing Fee to quickpaid(${interestRate}%): ${formatNumber(discountedPrice, currency)}
-                    <br>(-) Discount from Supplier: ${formatNumber(discountAmount, currency)}
-                    <br>Effective financing cost: ${formatNumber(final, currency)}
-                `;
-                if (installment1a && installment2a && installment3a) {
-                    document.getElementById('details').innerHTML += `
-                        <br>Installment 1: ${formatNumber(installment1a, currency)}
-                        <br>Installment 2: ${formatNumber(installment2a, currency)}
-                        <br>Installment 3: ${formatNumber(installment3a, currency)}
-                    `;
-                }
-                document.getElementById('details').style.display = 'block';
-            }
-
-            // document.getElementById('60days').addEventListener('click', function () {
-            //     showDetails('60', interest36Final, interest36DiscountedPrice, interest36FullAmount, 3.6,
-            //         discountAmount);
-            // });
-
-            // document.getElementById('90days').addEventListener('click', function () {
-            //     showDetails('90', interest49Final, interest49DiscountedPrice, interest49FullAmount, 4.9,
-            //         discountAmount);
-            // });
-
-            // document.getElementById('120days').addEventListener('click', function () {
-            //     showDetails('120', interest59Final, interest59DiscountedPrice, interest59FullAmount,
-            //         5.9, discountAmount, installment1a, installment2a, installment3a);
-            // });
         });
     </script>
 </body>
