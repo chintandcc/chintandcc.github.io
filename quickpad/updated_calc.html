@@ -260,12 +260,18 @@
             color: #000;
             /* Customize as needed */
         }
-        @media (max-width:767px){
+        @media(max-width:767px){
             .calc-wrapper{
                 flex-direction: column;
             }
             .container {
-    width: auto;
+                width: auto;
+            }
+            .tab-title-wrapper h3 {
+                font-size: 18px;
+            }
+            .tab-title-wrapper {
+    padding: 20px 10px 20px 20px;
 }
         }
     </style>
@@ -334,7 +340,7 @@
             <div class="tab-content-container">
                 <div class="tab-content-wrapper" id="content-60days" style="display: block;">
                     <div class="details">
-                        <strong>Interest for 60 days:</strong>
+                        <strong>Effective Financing Cost for 60 days:</strong>
                         <div class="price-table">
                             <div class="price-col">
                                 <div class="value-title">Financing Fee to quickpaid(3.6%):</div>
@@ -357,7 +363,7 @@
                 </div>
                 <div class="tab-content-wrapper" id="content-90days" style="display: none;">
                     <div class="details">
-                        <strong>Interest for 90 days:</strong>
+                        <strong>Effective Financing Cost for 90 days:</strong>
                         <div class="price-table">
                             <div class="price-col">
                                 <div class="value-title">Financing Fee to quickpaid(4.9%):</div>
@@ -380,7 +386,7 @@
                 </div>
                 <div class="tab-content-wrapper" id="content-120days" style="display: none;">
                     <div class="details">
-                        <strong>Interest for 120 days:</strong>
+                        <strong>Effective Financing Cost for 120 days:</strong>
                         <div class="price-table">
                             <div class="price-col">
                                 <div class="value-title">Financing Fee to quickpaid(5.9%):</div>
@@ -393,6 +399,18 @@
                             <div class="price-col">
                                 <div class="value-title">Effective financing cost:</div>
                                 <div id="effective-59" class="value-price">0.000,00 €</div>
+                            </div>
+                            <div class="price-col">
+                                <div class="value-title">Installment 1 (on day 60):</div>
+                                <div id="installment-1" class="value-price">0.000,00 €</div>
+                            </div>
+                            <div class="price-col">
+                                <div class="value-title">Installment 2 (on day 90):</div>
+                                <div id="installment-2" class="value-price">0.000,00 €</div>
+                            </div>
+                            <div class="price-col">
+                                <div class="value-title">Installment 3 (on day 120):</div>
+                                <div id="installment-3" class="value-price">0.000,00 €</div>
                             </div>
                         </div>
                     </div>
@@ -540,6 +558,9 @@
             document.getElementById('effective-49').textContent = formatNumber(interest49Final, currency);
             document.getElementById('fees-59').textContent = formatNumber(interest59DiscountedPrice, currency);
             document.getElementById('effective-59').textContent = formatNumber(interest59Final, currency);
+            document.getElementById('installment-1').textContent = formatNumber(installment1a, currency);
+            document.getElementById('installment-2').textContent = formatNumber(installment2a, currency);
+            document.getElementById('installment-3').textContent = formatNumber(installment3a, currency);
 
             // Function to show details
             function showDetails(days, final, discountedPrice, fullAmount, interestRate, discountAmount,
