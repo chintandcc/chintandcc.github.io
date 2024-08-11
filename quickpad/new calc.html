@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discount and Interest Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+            color: #555;
+        }
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        input[type="submit"]:hover {
+            background-color: #218838;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #f8f9fa;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .result p {
+            margin: 10px 0;
+            color: #333;
+        }
+        .interest-container {
+            margin-top: 20px;
+        }
+        .interest-result {
+            padding: 10px;
+            margin-bottom: 10px;
+            background-color: #e9ecef;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Discount and Interest Calculator</h1>
+        <form id="calculatorForm">
+            <label for="amount">Amount:</label>
+            <input type="number" id="amount" required>
+            <label for="discount">Discount Rate (%):</label>
+            <input type="number" id="discount" required>
+            <input type="submit" value="Calculate">
+        </form>
+        <div class="result">
+            <p id="originalAmount"></p>
+            <p id="discountAmount"></p>
+            <p id="discountedPrice"></p>
+            <div class="interest-container">
+                <strong>For 60 Days</strong>
+                <div id="interest36" class="interest-result"></div>
+                <strong>For 90 Days</strong>
+                <div id="interest49" class="interest-result"></div>
+                <strong>For 120 Days</strong>
+                <div id="interest59" class="interest-result"></div>
+            </div>
+            <div id="installmentsAndTotal" class="interest-container">
+                <strong>For 120 Days</strong>
+                <div class="interest-result">
+                    <p id="installment1"></p>
+                    <p id="installment2"></p>
+                    <p id="installment3"></p>
+                    <p id="Interestondiscount"></p>
+                    <p id="InterestonFull"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.getElementById('calculatorForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            let amount = parseFloat(document.getElementById('amount').value);
+            let discountRate = parseFloat(document.getElementById('discount').value);
+
+            // Calculate the discount amount
+            let discountAmount = amount * (discountRate / 100);
+
+            // Calculate the discounted price
+            let discountedPrice = amount - discountAmount;
+
+            // Daily interest rate (0.0383%)
+            let dailyInterestRate = 0.000383;
+
+            let Secondinstalment = discountedPrice * 0.7;
+            let Thirdinstalment = discountedPrice * 0.4;
+
+            let Secondinstalmentfull = amount * 0.7;
+            let Thirdinstalmentfull = amount * 0.4;
+
+            // Calculate interest for each installment period
+            let installment1 = discountedPrice * dailyInterestRate * 60;
+            let installment2 = Secondinstalment * dailyInterestRate * 90;
+            let installment3 = Thirdinstalment * dailyInterestRate * 120;
+            
+            let installment1f = amount * dailyInterestRate * 60;
+            let installment2f = Secondinstalmentfull * dailyInterestRate * 90;
+            let installment3f = Thirdinstalmentfull * dailyInterestRate * 120;
+
+            // Calculate total interest
+            let totalInterest = installment1 + installment2 + installment3;
+            let totalInterestf = installment1f + installment2f + installment3f;
+
+            // Calculate and display interest for 3.6% and 4.9%
+            let interest36FullAmount = amount * (3.6 / 100);
+            let interest49FullAmount = amount * (4.9 / 100);
+            let interest59FullAmount = amount * (5.9 / 100);
+            let interest36DiscountedPrice = discountedPrice * (3.6 / 100);
+            let interest49DiscountedPrice = discountedPrice * (4.9 / 100);
+            let interest59DiscountedPrice = discountedPrice * (5.9 / 100);
+            let interest36Final = interest36DiscountedPrice - discountAmount;
+            let interest49Final = interest49DiscountedPrice - discountAmount;
+            let interest59Final = interest59DiscountedPrice - discountAmount;
+            let totalInterestFull = amount + totalInterest;
+            let totalInterestDIsc = discountedPrice + totalInterest;
+
+            // Display the results
+            document.getElementById('originalAmount').textContent = 'Original Amount: $' + amount.toFixed(2);
+            document.getElementById('discountAmount').textContent = 'Discount Amount: $' + discountAmount.toFixed(2);
+            document.getElementById('discountedPrice').textContent = 'Discounted Price: $' + discountedPrice.toFixed(2);
+            document.getElementById('installment1').textContent = 'Interest for 60 days (30%): $' + installment1.toFixed(2);
+            document.getElementById('installment2').textContent = 'Interest for 90 days (70%): $' + installment2.toFixed(2);
+            document.getElementById('installment3').textContent = 'Interest for 120 days (40%): $' + installment3.toFixed(2);
+            // document.getElementById('totalInterest').textContent = 'Total Interest: $' + totalInterest.toFixed(0);
+            document.getElementById('InterestonFull').textContent = 'Interst on Full Amount: $' + totalInterestf.toFixed(0);
+            document.getElementById('Interestondiscount').textContent = 'Interst on Discounted Amount: $' + totalInterest.toFixed(0);
+
+
+            // Display interest for 3.6% and 4.9%
+            document.getElementById('interest36').innerHTML = `
+                <strong>Interest at 3.6%:</strong>
+                <br>Interst Price: $${interest36Final.toFixed(2)}
+                <br>Interest on Discounted Price: $${interest36DiscountedPrice.toFixed(2)}
+                <br>Interest on Full Amount: $${interest36FullAmount.toFixed(2)}
+            `;
+            document.getElementById('interest49').innerHTML = `
+                <strong>Interest at 4.9%:</strong>
+                <br>Interst Price: $${interest49Final.toFixed(2)}
+                <br>Interest on Discounted Price: $${interest49DiscountedPrice.toFixed(2)}
+                <br>Interest on Full Amount: $${interest49FullAmount.toFixed(2)}
+            `;
+            document.getElementById('interest59').innerHTML = `
+                <strong>Interest at 5.9%:</strong>
+                <br>Interst Price: $${interest59Final.toFixed(2)}
+                <br>Interest on Discounted Price: $${interest59DiscountedPrice.toFixed(2)}
+                <br>Interest on Full Amount: $${interest59FullAmount.toFixed(2)}
+            `;
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            width: 100%;
+        }
+    
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+    
+        label {
+            display: block;
+            margin-top: 10px;
+            color: #555;
+        }
+    
+        .currency-amount-container {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            grid-gap:10px;
+        }
+    
+        .currency-amount-container select,
+        .currency-amount-container input[type="number"] {
+            display: inline-block;
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+         #discount {
+            display: inline-block;
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+    
+        .currency-amount-container select {
+            padding: 7px;
+            /* width: 14%; */
+        }
+    
+        .note {
+            text-align: center;
+            padding-top: 21px;
+            color: #553c3c;
+            font-size: 15px;
+        }
+    
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+    
+        input[type="submit"]:hover {
+            background-color: #218838;
+        }
+    
+        .result {
+            display: none;
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #f8f9fa;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+    
+        .result p {
+            margin: 10px 0;
+            color: #333;
+        }
+    
+        .interest-container {
+            margin-top: 20px;
+        }
+    
+        .interest-result {
+            padding: 10px;
+            margin-bottom: 20px;
+            background-color: #e9ecef;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-top: 5px;
+        }
+    
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+    
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+            cursor: pointer;
+        }
+    
+        th {
+            background-color: #f2f2f2;
+        }
+    
+        .details {
+            display: none;
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #e9ecef;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .cr {
+    width: 20%;
+    display: flex;
+    }.am {
+    width: 86%;
+    }
+    span.breakdown-link {
+    display: block;
+    margin-top: 5px;
+    font-size: 12px;
+    color:#7ed3d4;
+    }
+    </style>
+</head>
+<body>
+    <div class="container">
+    
+        <form id="calculatorForm"><label for="currency-amount">Invoice Amount:</label>
+            <div class="currency-amount-container">
+                <div class="cr">
+                    
+                    <select id="currency" required>
+                        <option value="EUR">EUR</option>
+                        <option value="USD">USD</option>
+                        <option value="GBP">GBP</option>
+                        <option value="CHF">CHF</option>
+                        <option value="SEK">SEK</option>
+                        <option value="NOK">NOK</option>
+                    </select>
+                </div>
+                <div class="am">
+                    
+                    <input type="number" id="amount" required>
+                </div>
+            </div>
+            <label for="discount">Discount From Supplier (%):</label>
+            <input type="number" id="discount" step="any" required>
+            <input type="submit" value="Calculate">
+        </form>
+        <div id="result" class="result">
+            <p id="originalAmount"></p>
+            <p id="discountAmount"></p>
+            <p id="discountedPrice"></p>
+            <div class="interest-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Effective Pricing</th>
+                            <th>Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr id="60days">
+                            <td>60 days</td>
+                            <td id="price60days"></td>
+                        </tr>
+                        <tr id="90days">
+                            <td>90 days</td>
+                            <td id="price90days"></td>
+                        </tr>
+                        <tr id="120days">
+                            <td>120 days</td>
+                            <td id="price120days"></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div id="details" class="details"></div>
+            </div>
+        </div>
+        <div class="note">
+            <span>Only for German companies: <strong>19% VAT</strong> is applicable to all fees paid to quickpaid</span>
+        </div>
+    </div>
+    <script>
+        document.getElementById('calculatorForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+    
+            let amount = parseFloat(document.getElementById('amount').value);
+            let discountRate = parseFloat(document.getElementById('discount').value).toFixed(2);
+            let currency = document.getElementById('currency').value;
+    
+            function getCurrencySymbol(currency) {
+                switch (currency) {
+                    case 'USD':
+                        return 'USD';
+                    case 'EUR':
+                        return 'EUR';
+                    case 'GBP':
+                        return 'GBP';
+                    case 'CHF':
+                        return 'CHF';
+                    case 'SEK':
+                        return 'SEK';
+                    case 'NOK':
+                        return 'NOK';
+                    default:
+                        return '';
+                }
+            }
+    
+            function formatNumber(number, currency) {
+                let locale;
+                switch (currency) {
+                    case 'USD':
+                        locale = 'en-US';
+                        break;
+                    case 'EUR':
+                        locale = 'de-DE';
+                        break;
+                    case 'GBP':
+                        locale = 'en-GB';
+                        break;
+                    case 'CHF':
+                        locale = 'de-CH';
+                        break;
+                    case 'SEK':
+                        locale = 'sv-SE';
+                        break;
+                    case 'NOK':
+                        locale = 'nb-NO';
+                        break;
+                    default:
+                        locale = 'en-US';
+                }
+                return new Intl.NumberFormat(locale, { style: 'currency', currency: currency }).format(number);
+            }
+    
+            let discountAmount = amount * (discountRate / 100);
+            let discountedPrice = amount - discountAmount;
+    
+            // Daily interest rate (0.0383%)
+            let dailyInterestRate = 0.000383;
+    
+            let Secondinstalment = discountedPrice * 0.7;
+            let Thirdinstalment = discountedPrice * 0.4;
+            
+            let Firstinstalmentfull = discountedPrice * 0.3;
+            let Secondinstalmentfull = amount * 0.7;
+            let Thirdinstalmentfull = amount * 0.4;
+    
+            // Calculate interest for each installment period
+            let installment1 = discountedPrice * dailyInterestRate * 60;
+            let installment2 = Secondinstalment * dailyInterestRate * 90;
+            let installment3 = Thirdinstalment * dailyInterestRate * 120;
+            
+            let installment1f = amount * dailyInterestRate * 60;
+            let installment2f = Secondinstalmentfull * dailyInterestRate * 90;
+            let installment3f = Thirdinstalmentfull * dailyInterestRate * 120;
+            
+            // Calculate total interest
+            let totalInterest = installment1 + installment2 + installment3;
+            let totalInterestf = installment1f + installment2f + installment3f;
+            
+            // Calculate and display interest for 3.6%, 4.9%, and 5.9%
+            let interest36FullAmount = amount * (3.6 / 100);
+            let interest49FullAmount = amount * (4.9 / 100);
+            let interest59FullAmount = amount * (5.9 / 100);
+            let interest36DiscountedPrice = discountedPrice * (3.6 / 100);
+            let interest49DiscountedPrice = discountedPrice * (4.9 / 100);
+            let interest59DiscountedPrice = discountedPrice * (5.9 / 100);
+            let interest36Final = Math.max(interest36DiscountedPrice - discountAmount, 25);
+            let interest49Final = Math.max(interest49DiscountedPrice - discountAmount, 25);
+            let interest59Final = Math.max(interest59DiscountedPrice - discountAmount, 25);
+            
+            let installment1a = Firstinstalmentfull + interest59DiscountedPrice;
+            let installment2a = discountedPrice * 0.3;
+            let installment3a = discountedPrice * 0.4;
+            
+            document.getElementById('originalAmount').textContent = 'Invoice Value: ' + formatNumber(amount, currency);
+            document.getElementById('discountAmount').textContent = 'Discount from Supplier: ' + formatNumber(discountAmount, currency);
+            document.getElementById('discountedPrice').textContent = 'Net Payment to Supplier: ' + formatNumber(discountedPrice, currency);
+    
+            document.getElementById('price60days').textContent = formatNumber(interest36Final, currency);
+            document.getElementById('price60days').innerHTML += `<span class="breakdown-link">Detailed Breakdown ></span>`;
+            document.getElementById('price90days').textContent = formatNumber(interest49Final, currency);
+            document.getElementById('price90days').innerHTML += `<span class="breakdown-link">Detailed Breakdown ></span>`;
+            document.getElementById('price120days').textContent = formatNumber(interest59Final, currency);
+            document.getElementById('price120days').innerHTML += `<span class="breakdown-link">Detailed Breakdown ></span>`;
+    
+            document.getElementById('result').style.display = 'block';
+    
+            // Function to show details
+            function showDetails(days, final, discountedPrice, fullAmount, interestRate, discountAmount, installment1a, installment2a, installment3a) {
+                document.getElementById('details').innerHTML = `
+                    <strong>Interest for ${days} days:</strong>
+                    <br>Financing Fee to quickpaid(${interestRate}%): ${formatNumber(discountedPrice, currency)}
+                    <br>(-) Discount from Supplier: ${formatNumber(discountAmount, currency)}
+                    <br>Effective financing cost: ${formatNumber(final, currency)}
+                `;
+                if (installment1a && installment2a && installment3a) {
+                    document.getElementById('details').innerHTML += `
+                        <br>Installment 1: ${formatNumber(installment1a, currency)}
+                        <br>Installment 2: ${formatNumber(installment2a, currency)}
+                        <br>Installment 3: ${formatNumber(installment3a, currency)}
+                    `;
+                }
+                document.getElementById('details').style.display = 'block';
+            }
+    
+            document.getElementById('60days').addEventListener('click', function() {
+                showDetails('60', interest36Final, interest36DiscountedPrice, interest36FullAmount, 3.6, discountAmount);
+            });
+    
+            document.getElementById('90days').addEventListener('click', function() {
+                showDetails('90', interest49Final, interest49DiscountedPrice, interest49FullAmount, 4.9, discountAmount);
+            });
+    
+            document.getElementById('120days').addEventListener('click', function() {
+                showDetails('120', interest59Final, interest59DiscountedPrice, interest59FullAmount, 5.9, discountAmount, installment1a, installment2a, installment3a);
+            });
+        });
+    </script>   
+</body>
+</html>

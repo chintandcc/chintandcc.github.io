@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="calculator.js"></script>
+</head>
+
+<body>
+    <meta charset="UTF-8">
+	<div class="card payment-term-selection" data-controller="payment-term-calculation">
+		<div class="card-body">
+			<div class="row">
+				<div class="col-md-8 offset-md-2 text-center mb-4">
+					<h3 class="mt-5" style="font-size: 1.7em;">Heben Sie Ihr Skonto-Potenzial</h3>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-6">
+					<h3>Ihr Rechnungsbetrag:</h3>
+					<div class="range-slider-container">
+						<input data-target="payment-term-calculation.invoiceSlider" max="100000" min="0" step="100" type="range" value="15000" style="position: absolute; width: 1px; height: 1px; overflow: hidden; opacity: 0;">
+						<div class=" rangeSlider rangeSlider__horizontal" id="js-rangeSlider-1">
+							<div class=" rangeSlider__handle rangeSlider__handle__horizontal" style="transform: translateX(174.5px);"></div>
+							<div class=" rangeSlider__fill rangeSlider__fill__horizontal" style="width: 192px;"></div>
+							<div class=" rangeSlider__buffer rangeSlider__buffer__horizontal"></div>
+						</div>
+					</div>
+					<strong>
+						<span data-target="payment-term-calculation.amount">15.000,00�</span>
+					</strong>
+				</div>
+				<div class="col-md-6">
+					<h3>Ihre Skonto-Konditionen:</h3>
+					<div class="range-slider-container">
+						<input data-target="payment-term-calculation.skontoSlider" max="4" min="0" step="0.1" type="range" value="2" style="position: absolute; width: 1px; height: 1px; overflow: hidden; opacity: 0;">
+						<div class=" rangeSlider rangeSlider__horizontal" id="js-rangeSlider-0">
+							<div class=" rangeSlider__handle rangeSlider__handle__horizontal" style="transform: translateX(174.5px);"></div>
+							<div class=" rangeSlider__fill rangeSlider__fill__horizontal" style="width: 192px;"></div>
+							<div class=" rangeSlider__buffer rangeSlider__buffer__horizontal"></div>
+						</div>
+					</div>
+					<strong>
+						<span data-target="payment-term-calculation.skontoPercentage">2%</span>
+						Skonto </strong>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-6">
+					<h3 class="mt-4">Verbleibender Finanzierungsbetrag:</h3>
+					<strong data-target="payment-term-calculation.remainingAmount">14.700,00�</strong>
+				</div>
+				<div class="col-md-6">
+					<h3 class="mt-4">
+						Ihr Skonto-Potenzial: </h3>
+					<strong>
+						<span data-target="payment-term-calculation.skontoAmount">300,00�</span>
+					</strong>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-8 offset-md-2 text-center mt-4">
+					<h3 class="mt-5" style="font-size: 1.7em;">W&auml;hlen Sie ein Zahlungsziel von</h3>
+				</div>
+			</div>
+			<div class="card-deck card-deck-three payment-terms text-center">
+				<div class="card card-payment bg-light">
+					<div class="card-body is--slim">
+						<h3>60 Tagen</h3>
+						<strong>
+						  <span id="txtNur1">nur</span>
+						  <span id="txtVer1"> verbleibender Skonto-Ertrag</span>
+							<span data-target="payment-term-calculation.effectiveFee"></span>
+							  *
+							<span id="txtEffektive1">
+							effektiv
+							  </span>
+						</strong>
+						<br>
+						<small>Einmalige Zahlung</small>
+						<hr>
+						<small class="payment-details">
+							Finanzierungsgeb&uuml;hr
+							<br>
+							<strong>
+								<span data-target="payment-term-calculation.feeAfterSkonto">514,50�</span>
+							</strong>
+							/
+							<strong>
+								<span data-target="payment-term-calculation.fee">525,00�</span>**
+							</strong>
+							<br>
+							abh. von Skonto-Nutzung
+						</small>
+						<div class="btn btn-secondary mt-4" data-action="click->payment-term-calculation#selectPaymentTerm" data-target="payment-term-calculation.button">Ausw&auml;hlen</div>
+					</div>
+				</div>
+				<div class="card card-payment bg-light">
+					<div class="card-header">
+						<i class="fas fa-star"></i>
+						Unsere Empfehlung
+					</div>
+					<div class="card-body is--slim">
+						<h3>90 Tagen</h3>
+						<strong>
+							<span id="txtNur2">nur</span>
+							<span id="txtVer2"> verbleibender Skonto-Ertrag</span>
+							<span data-target="payment-term-calculation.effectiveFee">361,50�</span>
+							  *
+							<span id="txtEffektive2">
+							effektiv
+						  </span>
+						</strong>
+						<br>
+						<small>Einmalige Zahlung</small>
+						<hr>
+						<small class="payment-details">
+							Finanzierungsgeb&uuml;hr
+							<br>
+							<strong>
+								<span data-target="payment-term-calculation.feeAfterSkonto">661,50�</span>
+							</strong>
+							/
+							<strong>
+								<span data-target="payment-term-calculation.fee">675,00�</span>**
+							</strong>
+							<br>
+							abh. von Skonto-Nutzung
+						</small>
+						<div class="btn btn-secondary mt-4" data-action="click->payment-term-calculation#selectPaymentTerm" data-target="payment-term-calculation.button">Ausw&auml;hlen</div>
+					</div>
+				</div>
+				<div class="card card-payment bg-light">
+					<div class="card-body is--slim">
+						<h3>120 Tagen</h3>
+						<strong>
+						  <span id="txtNur3">nur</span>
+						  <span id="txtVer3"> verbleibender Skonto-Ertrag</span>
+							<span data-target="payment-term-calculation.effectiveFee">508,50�</span>
+							  *
+							<span id="txtEffektive3">
+							  effektiv
+							</span>
+						</strong>
+						<br>
+						<small class="installment-info-trigger" data-controller="modal" data-modal-target="#installments-modal">
+							Zahlung in 3 Monatsraten
+							<i class="fa fa-info-circle"></i>
+						</small>
+						<hr>
+						<small class="payment-details">
+							Finanzierungsgeb&uuml;hr
+							<br>
+							<strong>
+								<span data-target="payment-term-calculation.feeAfterSkonto">808,50�</span>
+							</strong>
+							/
+							<strong>
+								<span data-target="payment-term-calculation.fee">825,00�</span>**
+							</strong>
+							<br>
+							abh. von Skonto-Nutzung
+						</small>
+						<div class="btn btn-secondary mt-4" data-action="click->payment-term-calculation#selectPaymentTerm" data-target="payment-term-calculation.button">Ausw&auml;hlen</div>
+					</div>
+				</div>
+			</div>
+			<br>
+			<div class="text-center">
+				<small>* Errechnet sich aus der Finanzierungsgeb&uuml;hr auf den skonto-reduzierten Rechnungsbetrag abz&uuml;glich des Skontoerl&ouml;ses</small><br>
+                            <small>** Prim&auml;re Finanzierungsgeb&uuml;hr auf den (Skonto-reduzierten/ Original-)Rechnungsbetrag ohne Abzug eines m&ouml;glichen Skontoerl&ouml;ses.</small>			</div>
+			<div class="text-center">
+
+
+				<a class="mt-4 btn btn-primary btn-lg" href="https://app.quickpaid.com/registration/client?locale=de" target="_blank">Jetzt registrieren</a>
+			</div>
+		</div>
+	</div>
+	<style>
+		.rangeSlider__horizontal:last-child{display:none}.rangeSlider__handle__horizontal{top:-10px}.rangeSlider__handle__vertical{left:-10px;bottom:0}.range-slider-container{margin-top:1.5rem;margin-bottom:1rem;text-align:left}.rangeSlider,.rangeSlider__fill{display:block;box-shadow:inset 0 1px 3px rgba(0,0,0,.3);border-radius:10px}.rangeSlider{position:relative;background:#7f8c8d}.rangeSlider__horizontal{height:20px;width:100%}.rangeSlider__vertical{height:100%;width:20px}.rangeSlider--disabled{opacity:.4}.rangeSlider__fill{background:#16a085;position:absolute;z-index:2}.rangeSlider__fill__horizontal{height:100%;top:0;left:0}.rangeSlider__fill__vertical{width:100%;bottom:0;left:0}.rangeSlider__handle{border:1px solid #ccc;cursor:pointer;display:inline-block;width:40px;height:40px;position:absolute;z-index:3;background:linear-gradient(rgba(255,255,255,0),rgba(0,0,0,.1)) #fff;box-shadow:0 0 8px rgba(0,0,0,.3);border-radius:50%}.card,.card-deck,.row{display:flex}.rangeSlider__handle:after{content:"";display:block;width:18px;height:18px;margin:auto;position:absolute;top:0;right:0;bottom:0;left:0;background-image:linear-gradient(rgba(0,0,0,.13),rgba(255,255,255,0));border-radius:50%}.rangeSlider__handle:active{background-image:linear-gradient(rgba(0,0,0,.1),rgba(0,0,0,.12))}input[type=range]:focus+.rangeSlider .rangeSlider__handle{box-shadow:0 0 8px rgba(142,68,173,.9)}.rangeSlider__buffer{z-index:1;position:absolute;top:3px;height:14px;background:#2c3e50;border-radius:10px}.range-slider-container .rangeSlider,.range-slider-container .rangeSlider__fill{box-shadow:none}.range-slider-container .rangeSlider__fill{background:#7ed3d4}.range-slider-container .rangeSlider__handle{width:35px;height:35px;box-shadow:none}.range-slider-container .rangeSlider__handle__horizontal{top:-8px}.card{box-shadow:0 3px 6px 0 rgba(71,82,100,.11);margin-bottom:2rem}.page .card .card-body{padding:2rem 1.5rem}.card .card-body{padding:3.5rem}.card-body{flex:1 1 auto;padding:1.25rem}.row{flex-wrap:wrap;margin-right:-15px;margin-left:-15px}.mb-4,.my-4{margin-bottom:1.5rem!important}.col,.col-1,.col-10,.col-11,.col-12,.col-2,.col-3,.col-4,.col-5,.col-6,.col-7,.col-8,.col-9,.col-auto,.col-lg,.col-lg-1,.col-lg-10,.col-lg-11,.col-lg-12,.col-lg-2,.col-lg-3,.col-lg-4,.col-lg-5,.col-lg-6,.col-lg-7,.col-lg-8,.col-lg-9,.col-lg-auto,.col-md,.col-md-1,.col-md-10,.col-md-11,.col-md-12,.col-md-2,.col-md-3,.col-md-4,.col-md-5,.col-md-6,.col-md-7,.col-md-8,.col-md-9,.col-md-auto,.col-sm,.col-sm-1,.col-sm-10,.col-sm-11,.col-sm-12,.col-sm-2,.col-sm-3,.col-sm-4,.col-sm-5,.col-sm-6,.col-sm-7,.col-sm-8,.col-sm-9,.col-sm-auto,.col-xl,.col-xl-1,.col-xl-10,.col-xl-11,.col-xl-12,.col-xl-2,.col-xl-3,.col-xl-4,.col-xl-5,.col-xl-6,.col-xl-7,.col-xl-8,.col-xl-9,.col-xl-auto{position:relative;width:100%;min-height:1px;padding-right:15px;padding-left:15px}.mt-5,.my-5{margin-top:3rem!important}.landingpage .payment-terms{margin-top:2rem}.text-center{text-align:center!important}@media (min-width:576px){.card-deck{flex-flow:row wrap!important;margin-right:-15px;margin-left:-15px}.card-deck .card{display:flex;flex:1 0 0%;flex-direction:column;margin-right:15px;margin-bottom:0;margin-left:15px}}.card.card-payment{border-radius:7px}.payment-term-selection .card{box-shadow:none;border:1px solid #fff}.bg-light{background-color:#f8f9fa!important}.card{position:relative;flex-direction:column;min-width:0;word-wrap:break-word;background-color:#fff;background-clip:border-box;border:1px solid rgba(0,0,0,.125);border-radius:.25rem}@media (min-width:768px){.col-md-6{flex:0 0 50%;max-width:50%}}@media (min-width:1200px){.card-deck-three .card{flex:0 0 calc(33.3333333333% - 30px)}}.btn.btn-primary:active,.btn.btn-primary:focus,.btn.btn-primary:hover{color:#fff;background-image:linear-gradient(to right,#fb6c63 0,#fb6c63 100%);background-repeat:repeat-x}.btn.btn-primary{color:#fff;background-image:linear-gradient(to right,#fb6c63 0,#fd8759 100%);background-repeat:repeat-x}.btn-group-lg>.btn,.btn-lg{padding:.75rem 3rem;font-size:1.25rem;line-height:1.5;border-radius:50px}.card-deck{flex-direction:column}.card.card-payment .card-body.is--slim{padding:5.5rem 1.25rem 3rem}.payment-terms .payment-details{display:block}.btn-secondary{color:#fff;background-color:#6c757d;border-color:#6c757d}.mt-4,.my-4{margin-top:1.5rem!important}.btn-blue{background:#7ed3d4;color:#fff}.card.card-payment .card-header{padding:.5rem 1.25rem;margin-bottom:-2.5rem;border-bottom:none;background:#7ed3d4;color:#fff;font-weight:300;border-top-left-radius:7px;border-top-right-radius:7px}.btn{display:inline-block;font-weight:300;text-align:center;white-space:nowrap;vertical-align:middle;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;border:0 solid transparent;padding:.375rem 1.75rem;font-size:1rem;line-height:1.5;border-radius:50px;transition:color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out}
+	</style>
+</body>
+
+</html>
